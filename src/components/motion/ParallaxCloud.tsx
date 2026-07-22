@@ -15,7 +15,7 @@ const SCRIMS = {
   base: "linear-gradient(180deg, rgba(4,20,26,0.55), rgba(4,20,26,0.32) 45%, rgba(4,20,26,0.55))",
   strong:
     "linear-gradient(180deg, rgba(4,20,26,0.72), rgba(4,20,26,0.5) 45%, rgba(4,20,26,0.72))",
-  hero: "linear-gradient(180deg, rgba(4,20,26,0.62) 0%, rgba(4,20,26,0.38) 45%, rgba(4,20,26,0.78) 100%)",
+  hero: "linear-gradient(180deg, rgba(4,20,26,0.66) 0%, rgba(4,20,26,0.46) 45%, rgba(4,20,26,0.78) 100%)",
 };
 
 /**

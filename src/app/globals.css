@@ -64,6 +64,13 @@
   --ease-ascent: var(--ease-out-ascent);
 }
 
+/* Cheaper glass on small screens: mobile GPUs pay per blurred pixel */
+@media (max-width: 640px) {
+  :root {
+    --glass-blur: 12px;
+  }
+}
+
 /* ---------------------------------------------------------------------------
    Base
 --------------------------------------------------------------------------- */
@@ -114,6 +121,12 @@ p {
 
   .glass-tinted {
     background: var(--glass-fill-2);
+  }
+
+  /* Hero plate: the glass fill alone is too translucent over the brightest
+     coral clouds — an internal scrim guarantees AA at the panel top (§4/§6). */
+  .glass-scrim {
+    background: rgba(4, 20, 26, 0.38);
   }
 
   /* Same optics without backdrop-filter — for small/repeated cards, so the

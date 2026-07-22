@@ -25,7 +25,7 @@ export function ProjectCard({ project }: { project: Project }) {
         </ul>
 
         {project.metric && (
-          <p className="rounded-lg border border-tq-500/30 bg-tq-500/5 px-4 py-3 font-mono text-sm text-tq-400">
+          <p className="rounded-lg bg-tq-500/10 px-4 py-3 font-mono text-sm text-tq-400">
             {project.metric}
           </p>
         )}

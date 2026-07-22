@@ -15,7 +15,7 @@ export function HeroIntro() {
   return (
     <>
       <m.div
-        className="glass max-w-2xl px-8 py-12 text-center md:px-14 md:py-16"
+        className="glass glass-scrim max-w-2xl px-8 py-12 text-center md:px-14 md:py-16"
         initial={{ opacity: 0, y: 16, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.7, ease: EASE_OUT, delay: 0.1 }}
