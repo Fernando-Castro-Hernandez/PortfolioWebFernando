@@ -24,6 +24,14 @@ sobre fondo oscuro, y el contraste de texto es más fácil de garantizar (AA). L
 se ven retroiluminadas/moody. Cerca de la cima, la atmósfera aclara ligeramente. Si
 Fernando quiere un cielo más claro/diurno, se puede, pero cuidar el contraste (§6).
 
+**Decisión confirmada (Fase 1, aprobada por Fernando):** el arco tonal del ascenso va
+*del crepúsculo hacia la luz*. El Hero usa nubes de crepúsculo (el coral de la foto
+hace eco del acento `--cta`); Habilidades usa cúmulos diurnos tenues; Proyectos, el
+amanecer sobre picos; Galería y Contacto quedan sobre nubes de día plena luz. La
+metáfora: la cima del ascenso (el cloud, AWS) es luminosa. La base teal-navy del
+gradiente y los scrims por sección garantizan AA en todo el recorrido (§6). Assets en
+`public/images/clouds/`; cada sección monta su capa vía el componente `Section`.
+
 ---
 
 ## 2. Paleta (turquesa como color de sistema)
