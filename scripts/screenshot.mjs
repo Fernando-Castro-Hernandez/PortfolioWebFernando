@@ -22,6 +22,7 @@ const width = Number(w);
 const height = Number(h);
 const mobile = flags.includes("--mobile");
 const fullPage = flags.includes("--full");
+const reducedMotion = flags.includes("--reduced-motion");
 
 const EDGE = "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe";
 const PORT = 9333;
@@ -101,6 +102,11 @@ try {
   });
 
   await send(ws, "Page.enable");
+  if (reducedMotion) {
+    await send(ws, "Emulation.setEmulatedMedia", {
+      features: [{ name: "prefers-reduced-motion", value: "reduce" }],
+    });
+  }
   await send(ws, "Emulation.setDeviceMetricsOverride", {
     width,
     height,
