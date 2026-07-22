@@ -136,11 +136,17 @@ p {
     font-weight: 600;
     border-radius: 9999px;
     padding: 0.75rem 1.75rem;
-    transition: filter var(--dur-fast) var(--ease-out-ascent);
+    transition:
+      filter var(--dur-fast) var(--ease-out-ascent),
+      scale 160ms var(--ease-out-ascent);
   }
 
   .btn-cta:hover {
     filter: brightness(1.08);
+  }
+
+  .btn-cta:active {
+    scale: 0.97;
   }
 
   .btn-quiet {
@@ -153,11 +159,75 @@ p {
     font-weight: 500;
     border-radius: 9999px;
     padding: 0.75rem 1.75rem;
-    transition: background-color var(--dur-fast) var(--ease-out-ascent);
+    transition:
+      background-color var(--dur-fast) var(--ease-out-ascent),
+      scale 160ms var(--ease-out-ascent);
   }
 
   .btn-quiet:hover {
     background: rgba(255, 255, 255, 0.14);
+  }
+
+  .btn-quiet:active {
+    scale: 0.97;
+  }
+
+  /* Specular light that follows the pointer along a glass card's top edge
+     (SpecularCard moves it with a direct transform). Hover devices only. */
+  .specular {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .specular-light {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    height: 2px;
+    width: 140px;
+    border-radius: 9999px;
+    background: radial-gradient(
+      closest-side,
+      rgba(94, 234, 212, 0.85),
+      rgba(94, 234, 212, 0)
+    );
+    opacity: 0;
+    transition: opacity 200ms var(--ease-out-ascent);
+    pointer-events: none;
+    will-change: transform;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .specular:hover .specular-light {
+      opacity: 1;
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Cloud parallax — CSS scroll-driven, compositor-only. Browsers without
+   animation-timeline support render the static cloud; reduced motion turns
+   the drift off explicitly (the global guard can't reach timeline animations).
+--------------------------------------------------------------------------- */
+@keyframes cloud-drift {
+  from {
+    transform: translateY(-7%);
+  }
+  to {
+    transform: translateY(7%);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .cloud-parallax {
+    animation: cloud-drift linear both;
+    animation-timeline: view();
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cloud-parallax {
+    animation: none;
   }
 }
 

@@ -69,7 +69,7 @@ export function GlassNav() {
       {open && (
         <div
           id="mobile-menu"
-          className="glass mx-auto mt-2 max-w-5xl rounded-2xl p-4 md:hidden"
+          className="glass mx-auto mt-2 max-w-5xl rounded-2xl p-4 transition-[opacity,translate] duration-150 ease-[var(--ease-out-ascent)] starting:-translate-y-1.5 starting:opacity-0 md:hidden"
         >
           <ul className="flex flex-col gap-1">
             {sections.map((section) => (

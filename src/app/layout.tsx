@@ -3,6 +3,7 @@ import { Manrope, JetBrains_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import { Footer } from "@/components/Footer";
 import { GlassNav } from "@/components/GlassNav";
+import { MotionProvider } from "@/components/motion/MotionProvider";
 import "./globals.css";
 
 const satoshi = localFont({
@@ -88,9 +89,11 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <GlassNav />
-        {children}
-        <Footer />
+        <MotionProvider>
+          <GlassNav />
+          {children}
+          <Footer />
+        </MotionProvider>
       </body>
     </html>
   );
