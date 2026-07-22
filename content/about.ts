@@ -1,4 +1,12 @@
-// About section: bio paragraphs and the facts panel.
+// About section: portrait, bio paragraphs, and the facts panel.
+
+import type { StaticImageData } from "next/image";
+import portraitImage from "../public/images/profile1.jpeg";
+
+export const portrait: { image: StaticImageData; alt: string } = {
+  image: portraitImage,
+  alt: "Fernando Castro, smiling under the palm trees of Mérida",
+};
 
 export const bio: string[] = [
   "I'm Jesús Fernando Castro Hernández — Fernando. I'm a software development student at Instituto Tecnológico de Software in Mérida, and I learn by shipping: layered architectures, documented decisions, tested code, and deployments that survive contact with real users.",

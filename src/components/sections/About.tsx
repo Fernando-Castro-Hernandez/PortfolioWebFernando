@@ -1,4 +1,5 @@
-import { bio, facts } from "@content/about";
+import Image from "next/image";
+import { bio, facts, portrait } from "@content/about";
 import { sections } from "@content/site";
 import { Section } from "@/components/Section";
 
@@ -14,24 +15,33 @@ export function About() {
           ))}
         </div>
 
-        <aside className="glass-still h-fit p-7">
-          <dl className="flex flex-col gap-6">
-            {facts.map((group) => (
-              <div key={group.label}>
-                <dt className="font-mono text-xs tracking-widest text-tq-400">
-                  {group.label.toUpperCase()}
-                </dt>
-                <dd className="mt-3 flex flex-col gap-3">
-                  {group.items.map((item) => (
-                    <div key={item.title}>
-                      <p className="text-sm font-medium text-ink">{item.title}</p>
-                      <p className="mt-0.5 text-sm text-ink-dim">{item.detail}</p>
-                    </div>
-                  ))}
-                </dd>
-              </div>
-            ))}
-          </dl>
+        <aside className="flex h-fit flex-col gap-6">
+          <Image
+            src={portrait.image}
+            alt={portrait.alt}
+            placeholder="blur"
+            sizes="(min-width: 768px) 24rem, 100vw"
+            className="aspect-[4/5] w-full rounded-2xl border border-white/10 object-cover object-top"
+          />
+          <div className="glass-still p-7">
+            <dl className="flex flex-col gap-6">
+              {facts.map((group) => (
+                <div key={group.label}>
+                  <dt className="font-mono text-xs tracking-widest text-tq-400">
+                    {group.label.toUpperCase()}
+                  </dt>
+                  <dd className="mt-3 flex flex-col gap-3">
+                    {group.items.map((item) => (
+                      <div key={item.title}>
+                        <p className="text-sm font-medium text-ink">{item.title}</p>
+                        <p className="mt-0.5 text-sm text-ink-dim">{item.detail}</p>
+                      </div>
+                    ))}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </aside>
       </div>
     </Section>
