@@ -1,18 +1,24 @@
 // Dev tool: screenshot a URL with true device emulation via Edge/Chrome CDP.
-// Usage: node scripts/screenshot.mjs <url> <out.png> [width] [height] [--mobile]
+// Usage: node scripts/screenshot.mjs <url> <out.png> [width] [height] [--mobile] [--full]
+// --full captures the entire scrollable page height instead of one viewport.
 import { spawn } from "node:child_process";
 import { writeFileSync, mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
-const [url, out, w = "1440", h = "900", mobileFlag] = process.argv.slice(2);
+const args = process.argv.slice(2);
+const flags = args.filter((a) => a.startsWith("--"));
+const [url, out, w = "1440", h = "900"] = args.filter((a) => !a.startsWith("--"));
 if (!url || !out) {
-  console.error("usage: node scripts/screenshot.mjs <url> <out.png> [w] [h] [--mobile]");
+  console.error(
+    "usage: node scripts/screenshot.mjs <url> <out.png> [w] [h] [--mobile] [--full]",
+  );
   process.exit(1);
 }
 const width = Number(w);
 const height = Number(h);
-const mobile = mobileFlag === "--mobile";
+const mobile = flags.includes("--mobile");
+const fullPage = flags.includes("--full");
 
 const EDGE = "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe";
 const PORT = 9333;
@@ -56,7 +62,11 @@ function send(ws, method, params = {}) {
       const data = JSON.parse(event.data);
       if (data.id === id) {
         ws.removeEventListener("message", onMessage);
-        data.error ? reject(new Error(data.error.message)) : resolve(data.result);
+        if (data.error) {
+          reject(new Error(data.error.message));
+        } else {
+          resolve(data.result);
+        }
       }
     };
     ws.addEventListener("message", onMessage);
@@ -99,7 +109,34 @@ try {
   await loaded;
   await sleep(1500); // fonts / late paint
 
-  const { data } = await send(ws, "Page.captureScreenshot", { format: "png" });
+  let screenshotParams = { format: "png" };
+  if (fullPage) {
+    // Scroll through the page so lazy images load, then capture beyond the
+    // viewport WITHOUT resizing it (resizing would re-resolve svh units).
+    await send(ws, "Runtime.evaluate", {
+      expression: `(async () => {
+        const step = window.innerHeight;
+        for (let y = 0; y < document.documentElement.scrollHeight; y += step) {
+          window.scrollTo(0, y);
+          await new Promise((r) => setTimeout(r, 120));
+        }
+        window.scrollTo(0, 0);
+      })()`,
+      awaitPromise: true,
+    });
+    await sleep(1000);
+    const { result } = await send(ws, "Runtime.evaluate", {
+      expression: "document.documentElement.scrollHeight",
+      returnByValue: true,
+    });
+    screenshotParams = {
+      format: "png",
+      captureBeyondViewport: true,
+      clip: { x: 0, y: 0, width, height: result.value, scale: 1 },
+    };
+  }
+
+  const { data } = await send(ws, "Page.captureScreenshot", screenshotParams);
   writeFileSync(out, Buffer.from(data, "base64"));
   console.log(`saved ${out} (${width}x${height}${mobile ? " mobile" : ""})`);
   ws.close();
