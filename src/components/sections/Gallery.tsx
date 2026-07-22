@@ -15,13 +15,12 @@ export function Gallery() {
       scrim="strong"
     >
       <div className="columns-2 gap-4 md:columns-3">
-        {galleryImages.map((image) => (
+        {galleryImages.map((item) => (
           <Image
-            key={image.src}
-            src={image.src}
-            alt={image.alt}
-            width={image.width}
-            height={image.height}
+            key={item.image.src}
+            src={item.image}
+            alt={item.alt}
+            placeholder="blur"
             sizes="(min-width: 768px) 30vw, 45vw"
             className="mb-4 w-full rounded-xl border border-white/10"
           />

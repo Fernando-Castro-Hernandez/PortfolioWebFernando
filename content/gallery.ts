@@ -1,102 +1,87 @@
-// Gallery photos. Dimensions are real (read from the files) so next/image
-// can reserve space without layout shift.
+// Gallery photos. Static imports let next/image derive real dimensions and
+// generate blur placeholders automatically — no manual metadata to maintain.
+
+import type { StaticImageData } from "next/image";
+import codingSession1 from "../public/images/gallery/coding-session-1.jpeg";
+import codingSession2 from "../public/images/gallery/coding-session-2.jpeg";
+import ggj1 from "../public/images/gallery/ggj-1.jpeg";
+import ggj2 from "../public/images/gallery/ggj-2.jpeg";
+import ggj3 from "../public/images/gallery/ggj-3.jpeg";
+import ggj4 from "../public/images/gallery/ggj-4.jpeg";
+import ggj5 from "../public/images/gallery/ggj-5.jpeg";
+import ggj6 from "../public/images/gallery/ggj-6.jpeg";
+import ggj7 from "../public/images/gallery/ggj-7.jpeg";
+import ggj8 from "../public/images/gallery/ggj-8.jpeg";
+import roboticsWorkshop1 from "../public/images/gallery/robotics-workshop-1.jpeg";
+import roboticsWorkshop2 from "../public/images/gallery/robotics-workshop-2.jpeg";
+import roboticsWorkshop3 from "../public/images/gallery/robotics-workshop-3.jpeg";
+import tecCommunity1 from "../public/images/gallery/tec-community-1.jpg";
+import tecCommunity2 from "../public/images/gallery/tec-community-2.jpg";
 
 export interface GalleryImage {
-  src: string;
+  image: StaticImageData;
   alt: string;
-  width: number;
-  height: number;
 }
 
 export const galleryImages: GalleryImage[] = [
   {
-    src: "/images/gallery/ggj-1.jpeg",
+    image: ggj1,
     alt: "Global Game Jam — working with my team during the 48-hour jam",
-    width: 960,
-    height: 1280,
   },
   {
-    src: "/images/gallery/ggj-4.jpeg",
+    image: ggj4,
     alt: "Global Game Jam — presenting our game to the judges",
-    width: 1280,
-    height: 720,
   },
   {
-    src: "/images/gallery/ggj-2.jpeg",
-    alt: "Global Game Jam — late-night build session",
-    width: 960,
-    height: 1280,
-  },
-  {
-    src: "/images/gallery/ggj-5.jpeg",
-    alt: "Global Game Jam — the team at the venue",
-    width: 1280,
-    height: 720,
-  },
-  {
-    src: "/images/gallery/ggj-3.jpeg",
-    alt: "Global Game Jam — team photo with our finished game",
-    width: 1200,
-    height: 1600,
-  },
-  {
-    src: "/images/gallery/ggj-6.jpeg",
-    alt: "Global Game Jam — demo time on the big screen",
-    width: 1280,
-    height: 720,
-  },
-  {
-    src: "/images/gallery/ggj-7.jpeg",
-    alt: "Global Game Jam — receiving the participation certificate",
-    width: 900,
-    height: 1600,
-  },
-  {
-    src: "/images/gallery/ggj-8.jpeg",
-    alt: "Global Game Jam — closing ceremony",
-    width: 900,
-    height: 1600,
-  },
-  {
-    src: "/images/gallery/robotics-workshop-1.jpeg",
+    image: roboticsWorkshop1,
     alt: "Robotics workshop at Tecnológico de Software — group photo with the LEGO robot",
-    width: 1600,
-    height: 1200,
   },
   {
-    src: "/images/gallery/robotics-workshop-2.jpeg",
-    alt: "Robotics workshop at Tecnológico de Software — building session",
-    width: 1600,
-    height: 900,
+    image: ggj2,
+    alt: "Global Game Jam — late-night build session",
   },
   {
-    src: "/images/gallery/robotics-workshop-3.jpeg",
-    alt: "Robotics workshop at Tecnológico de Software — testing the robot",
-    width: 900,
-    height: 1600,
-  },
-  {
-    src: "/images/gallery/coding-session-1.jpeg",
-    alt: "Coding session at Tecnológico de Software — algorithms on the whiteboard",
-    width: 1487,
-    height: 1600,
-  },
-  {
-    src: "/images/gallery/coding-session-2.jpeg",
-    alt: "Coding session at Tecnológico de Software — heads-down at the laptops",
-    width: 720,
-    height: 1280,
-  },
-  {
-    src: "/images/gallery/tec-community-1.jpg",
+    image: tecCommunity1,
     alt: "Tecnológico de Software community — event group photo",
-    width: 2048,
-    height: 1536,
   },
   {
-    src: "/images/gallery/tec-community-2.jpg",
+    image: roboticsWorkshop3,
+    alt: "Robotics workshop at Tecnológico de Software — testing the robot",
+  },
+  {
+    image: ggj5,
+    alt: "Global Game Jam — the team at the venue",
+  },
+  {
+    image: codingSession1,
+    alt: "Coding session at Tecnológico de Software — algorithms on the whiteboard",
+  },
+  {
+    image: ggj3,
+    alt: "Global Game Jam — team photo with our finished game",
+  },
+  {
+    image: ggj6,
+    alt: "Global Game Jam — demo time on the big screen",
+  },
+  {
+    image: codingSession2,
+    alt: "Coding session at Tecnológico de Software — heads-down at the laptops",
+  },
+  {
+    image: ggj7,
+    alt: "Global Game Jam — receiving the participation certificate",
+  },
+  {
+    image: roboticsWorkshop2,
+    alt: "Robotics workshop at Tecnológico de Software — building session",
+  },
+  {
+    image: tecCommunity2,
     alt: "Tecnológico de Software community — meetup with students and faculty",
-    width: 2048,
-    height: 1536,
+  },
+  {
+    image: ggj8,
+    alt: "Global Game Jam — closing ceremony",
   },
 ];
