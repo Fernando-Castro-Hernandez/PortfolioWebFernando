@@ -5,10 +5,19 @@
 
 ---
 
-## Registro
+## Register
+
+brand
+
+## Platform
+
+web
+
+## Registro (nota)
 
 **Brand** (no product UI). Es una pieza de marca personal / landing, no un dashboard.
-Las decisiones de diseño se rigen por reglas de marca, no de producto.
+Las decisiones de diseño se rigen por reglas de marca, no de producto. Plataforma:
+web (Next.js estático; el móvil es web responsiva, no app nativa).
 
 ---
 

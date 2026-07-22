@@ -135,19 +135,16 @@ animación no comunica nada, se corta.
 
 ---
 
-## 6. Accesibilidad y rendimiento (no negociable)
+## 6. Accesibilidad y rendimiento
 
 El Liquid Glass y el parallax son caros y frágiles. Guardarriles:
 
-- **`prefers-reduced-motion: reduce`** → desactivar parallax y animaciones de entrada;
-  dejar el contenido estático y legible. Probarlo de verdad.
-- **`backdrop-filter`**: techo de blur razonable (~16px), máximo 2–3 capas visibles.
-  Fallback sólido (`background` opaco) donde no haya soporte o en `reduce`.
+
 - **Contraste AA**: todo el texto sobre vidrio/nubes debe cumplir WCAG AA. Si una nube
   clara compromete el texto, sube opacidad del panel o mete scrim. Legibilidad > estética.
 - **Imágenes de nubes**: `next/image`, AVIF/WebP, `placeholder="blur"`, tamaños
   responsivos. Nada de PNGs de varios MB al vuelo. La galería, lazy.
-- **Móvil**: baja intensidad de parallax y de vidrio; menos capas. Probar en gama media.
+
 - **Foco visible**, HTML semántico, `alt` descriptivo, navegación por teclado.
 
 ---
