@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { bio, facts, portrait } from "@content/about";
 import { sections } from "@content/site";
+import { Reveal } from "@/components/motion/Reveal";
 import { Section } from "@/components/Section";
 
 const meta = sections.find((section) => section.id === "about")!;
@@ -9,13 +10,14 @@ export function About() {
   return (
     <Section id={meta.id} altitude={meta.altitude} title={meta.title}>
       <div className="grid gap-12 md:grid-cols-[3fr_2fr]">
-        <div className="flex max-w-[65ch] flex-col gap-5 text-ink-dim">
+        <Reveal className="flex max-w-[65ch] flex-col gap-5 text-ink-dim">
           {bio.map((paragraph) => (
             <p key={paragraph.slice(0, 32)}>{paragraph}</p>
           ))}
-        </div>
+        </Reveal>
 
-        <aside className="flex h-fit flex-col gap-6">
+        <Reveal delay={0.12} y={18}>
+          <aside className="flex h-fit flex-col gap-6">
           <Image
             src={portrait.image}
             alt={portrait.alt}
@@ -42,7 +44,8 @@ export function About() {
               ))}
             </dl>
           </div>
-        </aside>
+          </aside>
+        </Reveal>
       </div>
     </Section>
   );

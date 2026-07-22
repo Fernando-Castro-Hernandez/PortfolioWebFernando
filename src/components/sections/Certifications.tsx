@@ -1,5 +1,6 @@
 import { certificateGroups } from "@content/certificates";
 import { sections } from "@content/site";
+import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { Section } from "@/components/Section";
 import { ArrowUpRightIcon } from "@/components/icons";
 
@@ -8,9 +9,9 @@ const meta = sections.find((section) => section.id === "certifications")!;
 export function Certifications() {
   return (
     <Section id={meta.id} altitude={meta.altitude} title={meta.title}>
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <RevealGroup className="grid gap-6 md:grid-cols-2 xl:grid-cols-3" stagger={0.06}>
         {certificateGroups.map((group) => (
-          <div key={group.area} className="glass-still p-6">
+          <RevealItem key={group.area} className="glass-still p-6" y={14}>
             <h3 className="font-display text-lg font-bold">{group.area}</h3>
             <ul className="mt-4 flex flex-col gap-4">
               {group.certificates.map((certificate) => (
@@ -34,9 +35,9 @@ export function Certifications() {
                 </li>
               ))}
             </ul>
-          </div>
+          </RevealItem>
         ))}
-      </div>
+      </RevealGroup>
     </Section>
   );
 }

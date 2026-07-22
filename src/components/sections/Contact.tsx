@@ -1,4 +1,5 @@
 import { sections, site } from "@content/site";
+import { Reveal } from "@/components/motion/Reveal";
 import { ContactForm } from "@/components/ContactForm";
 import { ObfuscatedEmail } from "@/components/ObfuscatedEmail";
 import { Section } from "@/components/Section";
@@ -15,6 +16,8 @@ export function Contact() {
       cloud={{ src: "/images/clouds/sky-above-render.jpg", opacity: 0.25 }}
       scrim="strong"
     >
+      {/* The horizon closes calmly: one slower, single-panel assembly. */}
+      <Reveal y={20} duration={0.65}>
       <div className="glass grid gap-10 p-8 md:grid-cols-2 md:p-12">
         <div className="flex flex-col gap-6">
           <p className="max-w-[50ch] text-ink-dim">
@@ -51,6 +54,7 @@ export function Contact() {
 
         <ContactForm />
       </div>
+      </Reveal>
     </Section>
   );
 }
