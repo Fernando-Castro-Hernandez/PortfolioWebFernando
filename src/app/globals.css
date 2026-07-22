@@ -115,6 +115,50 @@ p {
   .glass-tinted {
     background: var(--glass-fill-2);
   }
+
+  /* Same optics without backdrop-filter — for small/repeated cards, so the
+     page never exceeds 2-3 live blur surfaces (DESIGN.md §4). */
+  .glass-still {
+    background: rgba(255, 255, 255, 0.055);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow:
+      inset 0 1px 0 rgba(94, 234, 212, 0.28),
+      0 8px 32px rgba(0, 0, 0, 0.25);
+  }
+
+  .btn-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--cta);
+    color: var(--cta-ink);
+    font-weight: 600;
+    border-radius: 9999px;
+    padding: 0.75rem 1.75rem;
+    transition: filter var(--dur-fast) var(--ease-out-ascent);
+  }
+
+  .btn-cta:hover {
+    filter: brightness(1.08);
+  }
+
+  .btn-quiet {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: var(--text-primary);
+    font-weight: 500;
+    border-radius: 9999px;
+    padding: 0.75rem 1.75rem;
+    transition: background-color var(--dur-fast) var(--ease-out-ascent);
+  }
+
+  .btn-quiet:hover {
+    background: rgba(255, 255, 255, 0.14);
+  }
 }
 
 /* ---------------------------------------------------------------------------

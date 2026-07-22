@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Manrope, JetBrains_Mono } from "next/font/google";
 import localFont from "next/font/local";
+import { Footer } from "@/components/Footer";
+import { GlassNav } from "@/components/GlassNav";
 import "./globals.css";
 
 const satoshi = localFont({
@@ -52,7 +54,17 @@ export default function RootLayout({
       lang="en"
       className={`${satoshi.variable} ${manrope.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-sky-abyss focus:px-4 focus:py-2 focus:text-ink"
+        >
+          Skip to content
+        </a>
+        <GlassNav />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
