@@ -7,6 +7,9 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 const args = process.argv.slice(2);
+const hideIndex = args.indexOf("--hide");
+const hideSelectors = hideIndex >= 0 ? args[hideIndex + 1] : null;
+if (hideIndex >= 0) args.splice(hideIndex, 2);
 const flags = args.filter((a) => a.startsWith("--"));
 const [url, out, w = "1440", h = "900"] = args.filter((a) => !a.startsWith("--"));
 if (!url || !out) {
@@ -108,6 +111,20 @@ try {
   await send(ws, "Page.navigate", { url });
   await loaded;
   await sleep(1500); // fonts / late paint
+
+  if (hideSelectors) {
+    await send(ws, "Runtime.evaluate", {
+      expression: `
+        for (const sel of ${JSON.stringify(hideSelectors)}.split(",")) {
+          document.querySelectorAll(sel.trim()).forEach((el) => el.remove());
+        }
+        const style = document.createElement("style");
+        style.textContent = "html{scrollbar-width:none} ::-webkit-scrollbar{display:none}";
+        document.head.appendChild(style);
+      `,
+    });
+    await sleep(200);
+  }
 
   let screenshotParams = { format: "png" };
   if (fullPage) {
