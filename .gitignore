@@ -37,9 +37,10 @@ yarn-error.log*
 # vercel
 .vercel
 
-# local tool state (not project source)
+# local tool state (not project source; .impeccable/config.json IS committed)
 .claude/settings.local.json
-.impeccable/
+.impeccable/config.local.json
+.impeccable/live/
 
 # private content: CV contains personal phone number (repo is public)
 content/Resume*CV.pdf

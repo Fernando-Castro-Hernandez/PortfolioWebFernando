@@ -1,0 +1,10 @@
+{
+  "_notes": {
+    "ai-color-palette": "Turquoise-on-dark IS the documented brand system color (DESIGN.md §2, chosen in the brief). Used as restrained accent, not neon glow.",
+    "repeated-section-kickers": "The ALT · altitude labels are the deliberate, named brand system (the ascent instrument, DESIGN.md §1/§7). They carry information (altitude progression, PEAK/HORIZON waypoints), not generic scaffolding.",
+    "wide-tracking": "0.1em tracking only on tiny mono micro-labels of the altitude instrument (DESIGN.md §3 allows ALL-CAPS mono micro-labels). Never on body text."
+  },
+  "detector": {
+    "ignoreRules": ["ai-color-palette", "repeated-section-kickers", "wide-tracking"]
+  }
+}
