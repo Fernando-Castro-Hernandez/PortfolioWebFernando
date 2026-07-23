@@ -1,6 +1,54 @@
-// Certificates grouped by area (PRODUCT.md §4) — never a flat list.
-// `file` points to the public PDF; certificates without a file render as text only.
+// Certifications, split into two tiers:
+//  - featuredBadges: the industry credentials that take real study (AWS Academy,
+//    Cisco). Shown large in a Liquid Glass showcase.
+//  - certificateGroups: shorter courses, grouped by area (PRODUCT.md §4).
+// `file` points to a public PDF; entries without one render without a link.
 // Source scans live in content/certificates/ (the CV folder, not served).
+
+import type { StaticImageData } from "next/image";
+import awsFoundations from "../public/images/badges/aws-academy-graduate-cloud-foundations.png";
+import awsOperations from "../public/images/badges/aws-academy-graduate-cloud-operations-training-badg.png";
+import ciscoNetwork from "../public/images/badges/network-technician-career-path.png";
+import ciscoPython from "../public/images/badges/python-essentials-1.png";
+
+export interface FeaturedBadge {
+  image: StaticImageData;
+  name: string;
+  issuer: string;
+  /** What it certifies / why it matters — one line. */
+  note: string;
+  file?: string;
+}
+
+export const featuredBadges: FeaturedBadge[] = [
+  {
+    image: awsFoundations,
+    name: "Cloud Foundations",
+    issuer: "AWS Academy",
+    note: "Core AWS services, security, and architecture.",
+    file: "/certificates/aws-cloud-foundations.pdf",
+  },
+  {
+    image: awsOperations,
+    name: "Cloud Operations",
+    issuer: "AWS Academy",
+    note: "Operating and monitoring workloads on AWS.",
+  },
+  {
+    image: ciscoNetwork,
+    name: "Network Technician Career Path",
+    issuer: "Cisco Networking Academy",
+    note: "Networking fundamentals, protocols, and troubleshooting.",
+    file: "/certificates/network-technician-career-path.pdf",
+  },
+  {
+    image: ciscoPython,
+    name: "Python Essentials 1",
+    issuer: "Cisco Networking Academy",
+    note: "Python foundations, verified by Cisco.",
+    file: "/certificates/python-essentials-1.pdf",
+  },
+];
 
 export interface Certificate {
   name: string;
@@ -14,16 +62,6 @@ export interface CertificateGroup {
 }
 
 export const certificateGroups: CertificateGroup[] = [
-  {
-    area: "Cloud",
-    certificates: [
-      {
-        name: "AWS Academy Graduate — Cloud Foundations",
-        issuer: "AWS Academy",
-        file: "/certificates/aws-cloud-foundations.pdf",
-      },
-    ],
-  },
   {
     area: "Databases & SQL",
     certificates: [
@@ -57,21 +95,6 @@ export const certificateGroups: CertificateGroup[] = [
         name: "Introduction to GitHub Concepts",
         issuer: "DataCamp",
         file: "/certificates/github-concepts.pdf",
-      },
-    ],
-  },
-  {
-    area: "Networking & Python",
-    certificates: [
-      {
-        name: "Network Technician Career Path",
-        issuer: "Cisco Networking Academy",
-        file: "/certificates/network-technician-career-path.pdf",
-      },
-      {
-        name: "Python Essentials 1",
-        issuer: "Cisco Networking Academy",
-        file: "/certificates/python-essentials-1.pdf",
       },
     ],
   },

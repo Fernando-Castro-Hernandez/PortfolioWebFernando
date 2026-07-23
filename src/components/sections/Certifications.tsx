@@ -1,6 +1,7 @@
 import { certificateGroups } from "@content/certificates";
 import { sections } from "@content/site";
-import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { BadgeShowcase } from "@/components/BadgeShowcase";
+import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { Section } from "@/components/Section";
 import { ArrowUpRightIcon } from "@/components/icons";
 
@@ -9,10 +10,24 @@ const meta = sections.find((section) => section.id === "certifications")!;
 export function Certifications() {
   return (
     <Section id={meta.id} altitude={meta.altitude} title={meta.title}>
-      <RevealGroup className="grid gap-6 md:grid-cols-2 xl:grid-cols-3" stagger={0.06}>
+      {/* Tier 1 — the credentials that took real study, raised into a showcase. */}
+      <Reveal>
+        <BadgeShowcase />
+      </Reveal>
+
+      {/* Tier 2 — shorter courses, grouped by area. */}
+      <Reveal className="mt-16" y={10}>
+        <h3 className="text-sm font-mono tracking-widest text-ink-dim">
+          MORE CERTIFICATES
+        </h3>
+      </Reveal>
+      <RevealGroup
+        className="mt-6 grid items-start gap-6 md:grid-cols-2 xl:grid-cols-4"
+        stagger={0.06}
+      >
         {certificateGroups.map((group) => (
           <RevealItem key={group.area} className="glass-still p-6" y={14}>
-            <h3 className="font-display text-lg font-bold">{group.area}</h3>
+            <h4 className="font-display text-lg font-bold">{group.area}</h4>
             <ul className="mt-4 flex flex-col gap-4">
               {group.certificates.map((certificate) => (
                 <li key={`${certificate.name}-${certificate.issuer}`}>
