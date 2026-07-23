@@ -1,11 +1,38 @@
 import Image from "next/image";
-import { bio, facts, portrait } from "@content/about";
+import { bio, currently, facts, portrait, type FactGroup } from "@content/about";
 import { sections, site } from "@content/site";
 import { Reveal } from "@/components/motion/Reveal";
 import { Section } from "@/components/Section";
 import { DownloadIcon } from "@/components/icons";
 
 const meta = sections.find((section) => section.id === "about")!;
+
+/** A single labelled block inside a glass facts card. */
+function FactBlock({ group }: { group: FactGroup }) {
+  return (
+    <div>
+      <dt className="font-mono text-xs tracking-widest text-tq-400">
+        {group.label.toUpperCase()}
+      </dt>
+      {group.heading && (
+        <p className="mt-3 text-sm font-medium text-ink">{group.heading}</p>
+      )}
+      <dd className="mt-3 flex flex-col gap-3">
+        {group.items.map((item) => (
+          <div key={item.title}>
+            <p className="text-sm font-medium text-ink">{item.title}</p>
+            {item.detail && (
+              <p className="mt-0.5 text-sm text-ink-dim">{item.detail}</p>
+            )}
+          </div>
+        ))}
+      </dd>
+      {group.note && (
+        <p className="mt-3 text-sm text-ink-dim">{group.note}</p>
+      )}
+    </div>
+  );
+}
 
 export function About() {
   return (
@@ -23,6 +50,12 @@ export function About() {
             <DownloadIcon className="h-4 w-4" />
             {site.resume.label}
           </a>
+
+          <div className="glass-still mt-6 w-full p-7">
+            <dl>
+              <FactBlock group={currently} />
+            </dl>
+          </div>
         </Reveal>
 
         <Reveal delay={0.12} y={18}>
@@ -37,19 +70,7 @@ export function About() {
           <div className="glass-still p-7">
             <dl className="flex flex-col gap-6">
               {facts.map((group) => (
-                <div key={group.label}>
-                  <dt className="font-mono text-xs tracking-widest text-tq-400">
-                    {group.label.toUpperCase()}
-                  </dt>
-                  <dd className="mt-3 flex flex-col gap-3">
-                    {group.items.map((item) => (
-                      <div key={item.title}>
-                        <p className="text-sm font-medium text-ink">{item.title}</p>
-                        <p className="mt-0.5 text-sm text-ink-dim">{item.detail}</p>
-                      </div>
-                    ))}
-                  </dd>
-                </div>
+                <FactBlock key={group.label} group={group} />
               ))}
             </dl>
           </div>

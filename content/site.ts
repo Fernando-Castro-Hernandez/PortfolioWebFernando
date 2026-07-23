@@ -6,7 +6,7 @@ export const site = {
   fullName: "Jesús Fernando Castro Hernández",
   role: "Software Development Student · Backend & Cloud",
   tagline:
-    "I build backend systems and AI automations that make it to production — with architecture, tests, CI, and cloud infrastructure, not just working demos.",
+    "I build backend systems that reach production — layered architecture, tests, and AWS infrastructure provisioned with Terraform. Last year I automated a 2-hour daily task down to 30 seconds for a 4-branch business.",
   location: "Mérida, Yucatán, MX",
   // Email is split so the address never appears assembled in static HTML.
   emailUser: "jesus.castro",
@@ -22,11 +22,14 @@ export const site = {
   // Public CV — verified to contain no phone number (safe on a public repo).
   resume: { href: "/Fernando-Castro-CV.pdf", label: "Download CV" },
   milestones: [
-    "Global Game Jam",
-    "Invent For The Planet",
+    "Deployed on AWS with Terraform",
+    "123 tests in CI",
+    "~2 h/day automated away",
+    "Java",
+    "C#",
+    "Python",
+    "Store Manager",
     "IEEE Member",
-    "Store Manager · AlfaMascotas (4 branches)",
-    "Dual program — Sept 2026",
   ],
 } as const;
 

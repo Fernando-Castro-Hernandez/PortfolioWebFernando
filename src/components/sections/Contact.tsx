@@ -21,7 +21,7 @@ export function Contact() {
       <div className="glass grid gap-10 p-8 md:grid-cols-2 md:p-12">
         <div className="flex flex-col gap-6">
           <p className="max-w-[50ch] text-ink-dim">
-            Looking for a backend/cloud developer for your team or the dual program?
+            Looking for a backend/cloud developer for your team?
             Tell me what you&apos;re building — I read everything and reply fast.
           </p>
           <div className="flex flex-col gap-3 text-sm">
