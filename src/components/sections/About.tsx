@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { bio, facts, portrait } from "@content/about";
-import { sections } from "@content/site";
+import { sections, site } from "@content/site";
 import { Reveal } from "@/components/motion/Reveal";
 import { Section } from "@/components/Section";
+import { DownloadIcon } from "@/components/icons";
 
 const meta = sections.find((section) => section.id === "about")!;
 
@@ -10,10 +11,18 @@ export function About() {
   return (
     <Section id={meta.id} altitude={meta.altitude} title={meta.title}>
       <div className="grid gap-12 md:grid-cols-[3fr_2fr]">
-        <Reveal className="flex max-w-[65ch] flex-col gap-5 text-ink-dim">
+        <Reveal className="flex max-w-[65ch] flex-col items-start gap-5 text-ink-dim">
           {bio.map((paragraph) => (
             <p key={paragraph.slice(0, 32)}>{paragraph}</p>
           ))}
+          <a
+            href={site.resume.href}
+            download
+            className="btn-quiet mt-3"
+          >
+            <DownloadIcon className="h-4 w-4" />
+            {site.resume.label}
+          </a>
         </Reveal>
 
         <Reveal delay={0.12} y={18}>

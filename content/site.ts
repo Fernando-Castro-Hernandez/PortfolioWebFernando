@@ -19,6 +19,8 @@ export const site = {
     primary: { label: "View projects", href: "#projects" },
     secondary: { label: "Get in touch", href: "#contact" },
   },
+  // Public CV — verified to contain no phone number (safe on a public repo).
+  resume: { href: "/Fernando-Castro-CV.pdf", label: "Download CV" },
   milestones: [
     "Global Game Jam",
     "Invent For The Planet",
