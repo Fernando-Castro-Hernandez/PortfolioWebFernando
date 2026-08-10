@@ -19,11 +19,11 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "gymtracker",
-    title: "GymTracker",
+    id: "novux-tracker",
+    title: "Novux Tracker",
     kind: "Flagship · Full-stack web app",
     summary:
-      "A progressive-overload training log with an AI coach, built like a product: layered architecture, tests gating CI, and a real AWS deployment.",
+      "A progressive-overload training log with an AI coach, built like a product: layered architecture, tests gating CI, and a real AWS deployment. Live at gymtrackers.app.",
     highlights: [
       "Layered architecture across 4 separate projects, with the reasoning documented in ADRs.",
       "AI coach and chatbot with context: SQL retrieval with pruning, guardrails, prompt caching, token/latency observability, and a Claude → Gemini fallback.",
