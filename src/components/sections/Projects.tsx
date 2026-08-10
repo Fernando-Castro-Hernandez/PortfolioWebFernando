@@ -1,6 +1,7 @@
 import { projects } from "@content/projects";
 import { sections } from "@content/site";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
+import { NovuxTour } from "@/components/NovuxTour";
 import { ProjectCard } from "@/components/ProjectCard";
 import { Section } from "@/components/Section";
 
@@ -29,6 +30,9 @@ export function Projects() {
           </RevealItem>
         ))}
       </RevealGroup>
+
+      {/* The flagship gets a second pass: the cards argue, the screens prove. */}
+      <NovuxTour />
     </Section>
   );
 }
