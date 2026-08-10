@@ -25,7 +25,15 @@ export function CertificateCard({ certificate, onOpen }: CertificateCardProps) {
         <button
           type="button"
           data-cert-trigger
-          onClick={() => onOpen({ image, name, issuer, file })}
+          onClick={() =>
+            onOpen({
+              image,
+              title: name,
+              subtitle: issuer,
+              alt: `${name} certificate issued by ${issuer}`,
+              file,
+            })
+          }
           aria-label={`View certificate: ${name} (${issuer})`}
           className="group mb-3 block w-full overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] p-2 transition-colors hover:border-tq-400/40"
         >

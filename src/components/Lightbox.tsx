@@ -6,10 +6,14 @@ import { ArrowUpRightIcon, CloseIcon } from "@/components/icons";
 
 export interface LightboxItem {
   image: StaticImageData;
-  name: string;
-  issuer: string;
-  /** Optional PDF of the same credential. */
+  title: string;
+  subtitle: string;
+  /** Describes the image for screen readers; the caption alone rarely does. */
+  alt: string;
+  /** Optional source document, offered as a link inside the dialog. */
   file?: string;
+  /** Label for that link. */
+  fileLabel?: string;
 }
 
 interface LightboxProps {
@@ -79,16 +83,16 @@ export function Lightbox({ item, onClose }: LightboxProps) {
                 id={titleId}
                 className="font-display text-lg font-bold text-ink"
               >
-                {shown.name}
+                {shown.title}
               </p>
               <p className="mt-0.5 font-mono text-xs text-tq-400">
-                {shown.issuer}
+                {shown.subtitle}
               </p>
             </div>
             <button
               type="button"
               onClick={onClose}
-              aria-label="Close certificate"
+              aria-label="Close"
               className="-mt-1 shrink-0 rounded-full border border-white/15 bg-white/10 p-2 text-ink transition-colors hover:bg-white/15"
             >
               <CloseIcon className="h-4 w-4" />
@@ -97,7 +101,7 @@ export function Lightbox({ item, onClose }: LightboxProps) {
 
           <Image
             src={shown.image}
-            alt={`${shown.name} certificate issued by ${shown.issuer}`}
+            alt={shown.alt}
             placeholder="blur"
             sizes="(max-width: 768px) 92vw, 56rem"
             // An explicit width, not w-auto: with width:auto the element sizes
@@ -113,7 +117,7 @@ export function Lightbox({ item, onClose }: LightboxProps) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 self-center text-sm font-medium text-tq-400 transition-colors hover:text-tq-500"
             >
-              Open the PDF
+              {shown.fileLabel ?? "Open the PDF"}
               <ArrowUpRightIcon className="h-3.5 w-3.5" />
             </a>
           )}

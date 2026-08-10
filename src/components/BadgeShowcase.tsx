@@ -102,7 +102,13 @@ export function BadgeShowcase() {
                       type="button"
                       data-badge-trigger
                       onClick={() =>
-                        setOpened({ image: certificate, name, issuer, file })
+                        setOpened({
+                          image: certificate,
+                          title: name,
+                          subtitle: issuer,
+                          alt: `${name} certificate issued by ${issuer}`,
+                          file,
+                        })
                       }
                       className="group block w-full rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-tq-400"
                       aria-label={`View certificate: ${name} (${issuer})`}
