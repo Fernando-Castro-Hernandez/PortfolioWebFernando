@@ -37,6 +37,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# design-review screenshots from scripts/screenshot.mjs
+/tmp/
+
 # local tool state (not project source; .impeccable/config.json IS committed)
 .claude/settings.local.json
 .impeccable/config.local.json
