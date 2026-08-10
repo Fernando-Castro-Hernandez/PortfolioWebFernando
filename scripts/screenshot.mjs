@@ -10,11 +10,14 @@ const args = process.argv.slice(2);
 const hideIndex = args.indexOf("--hide");
 const hideSelectors = hideIndex >= 0 ? args[hideIndex + 1] : null;
 if (hideIndex >= 0) args.splice(hideIndex, 2);
+const clickIndex = args.indexOf("--click");
+const clickSelector = clickIndex >= 0 ? args[clickIndex + 1] : null;
+if (clickIndex >= 0) args.splice(clickIndex, 2);
 const flags = args.filter((a) => a.startsWith("--"));
 const [url, out, w = "1440", h = "900"] = args.filter((a) => !a.startsWith("--"));
 if (!url || !out) {
   console.error(
-    "usage: node scripts/screenshot.mjs <url> <out.png> [w] [h] [--mobile] [--full]",
+    "usage: node scripts/screenshot.mjs <url> <out.png> [w] [h] [--mobile] [--full] [--click <selector>]",
   );
   process.exit(1);
 }
@@ -130,6 +133,27 @@ try {
       `,
     });
     await sleep(200);
+  }
+
+  if (clickSelector) {
+    // Opens whatever the selector triggers (a dialog, a menu) before capture.
+    // Scrolls first: a trigger below the fold may still be mid-reveal.
+    const { result } = await send(ws, "Runtime.evaluate", {
+      expression: `(async () => {
+        const el = document.querySelector(${JSON.stringify(clickSelector)});
+        if (!el) return "not found";
+        el.scrollIntoView({ block: "center" });
+        await new Promise((r) => setTimeout(r, 700));
+        el.click();
+        return "clicked";
+      })()`,
+      awaitPromise: true,
+      returnByValue: true,
+    });
+    if (result.value === "not found") {
+      throw new Error(`--click selector matched nothing: ${clickSelector}`);
+    }
+    await sleep(600); // let the transition settle
   }
 
   let screenshotParams = { format: "png" };
