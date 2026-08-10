@@ -215,6 +215,90 @@ p {
       opacity: 1;
     }
   }
+
+  /* Certificate lightbox. Native <dialog> in the top layer, so the page behind
+     is inert and its blur no longer counts against the 2-3 surface budget (§4).
+     Enter/exit run on CSS alone — MotionProvider uses LazyMotion strict, which
+     rules out AnimatePresence here. */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    margin: 0;
+    width: 100vw;
+    max-width: 100vw;
+    height: 100svh;
+    max-height: 100svh;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    opacity: 0;
+    /* Dismissal is the system answering, so it exits faster than it enters. */
+    transition:
+      opacity 200ms var(--ease-out-ascent),
+      display 200ms allow-discrete,
+      overlay 200ms allow-discrete;
+  }
+
+  .lightbox[open] {
+    opacity: 1;
+    transition:
+      opacity var(--dur-base) var(--ease-out-ascent),
+      display var(--dur-base) allow-discrete,
+      overlay var(--dur-base) allow-discrete;
+  }
+
+  .lightbox::backdrop {
+    background: rgba(2, 12, 17, 0.74);
+    backdrop-filter: blur(10px) saturate(1.1);
+    -webkit-backdrop-filter: blur(10px) saturate(1.1);
+    opacity: 0;
+    transition:
+      opacity 200ms var(--ease-out-ascent),
+      display 200ms allow-discrete,
+      overlay 200ms allow-discrete;
+  }
+
+  .lightbox[open]::backdrop {
+    opacity: 1;
+    transition:
+      opacity var(--dur-base) var(--ease-out-ascent),
+      display var(--dur-base) allow-discrete,
+      overlay var(--dur-base) allow-discrete;
+  }
+
+  /* The sheet rises the way the rest of the site does, just a shorter distance. */
+  .lightbox-sheet {
+    transform: translateY(10px) scale(0.985);
+    transition: transform 200ms var(--ease-out-ascent);
+  }
+
+  .lightbox[open] .lightbox-sheet {
+    transform: none;
+    transition: transform var(--dur-base) var(--ease-out-ascent);
+  }
+
+  @starting-style {
+    .lightbox[open] {
+      opacity: 0;
+    }
+
+    .lightbox[open]::backdrop {
+      opacity: 0;
+    }
+
+    .lightbox[open] .lightbox-sheet {
+      transform: translateY(10px) scale(0.985);
+    }
+  }
+}
+
+/* The global reduced-motion guard reaches ::before/::after but not ::backdrop. */
+@media (prefers-reduced-motion: reduce) {
+  .lightbox,
+  .lightbox::backdrop,
+  .lightbox-sheet {
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* ---------------------------------------------------------------------------
