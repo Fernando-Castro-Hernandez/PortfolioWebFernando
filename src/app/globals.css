@@ -139,6 +139,26 @@ p {
       0 8px 32px rgba(0, 0, 0, 0.25);
   }
 
+  /* .glass-still, lit from within. Marks the screens where the AI work is the
+     point, so that thread is visible while scanning the column. The turquoise
+     is strongest at the top edge and gone by the caption, so body copy still
+     sits on the same ground as every other card and keeps its AA contrast. */
+  .glass-lit {
+    background:
+      radial-gradient(
+        130% 100% at 50% 0%,
+        rgba(45, 212, 191, 0.17) 0%,
+        rgba(45, 212, 191, 0.06) 42%,
+        rgba(255, 255, 255, 0.055) 100%
+      );
+    border: 1px solid rgba(94, 234, 212, 0.3);
+    border-radius: 16px;
+    box-shadow:
+      inset 0 1px 0 rgba(94, 234, 212, 0.5),
+      0 8px 32px rgba(0, 0, 0, 0.25),
+      0 0 40px -10px rgba(45, 212, 191, 0.32);
+  }
+
   .btn-cta {
     display: inline-flex;
     align-items: center;

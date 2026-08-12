@@ -1,8 +1,9 @@
+import { novuxTour } from "@content/novux";
 import { projects } from "@content/projects";
 import { sections } from "@content/site";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
-import { NovuxTour } from "@/components/NovuxTour";
 import { ProjectCard } from "@/components/ProjectCard";
+import { ProjectTour } from "@/components/ProjectTour";
 import { Section } from "@/components/Section";
 
 const meta = sections.find((section) => section.id === "projects")!;
@@ -31,8 +32,14 @@ export function Projects() {
         ))}
       </RevealGroup>
 
-      {/* The flagship gets a second pass: the cards argue, the screens prove. */}
-      <NovuxTour />
+      {/* The cards argue; the screens prove. */}
+      <ProjectTour
+        eyebrow="NOVUX TRACKER · WALKTHROUGH"
+        lead="Captured from production. Each screen is here for a decision behind it, not for the pixels."
+        shots={novuxTour}
+        subtitle="Novux Tracker"
+        link={{ href: "https://gymtrackers.app", label: "Open the live app" }}
+      />
     </Section>
   );
 }
