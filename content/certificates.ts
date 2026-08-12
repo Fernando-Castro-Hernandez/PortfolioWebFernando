@@ -16,6 +16,7 @@ import ciscoPython from "../public/images/badges/python-essentials-1.png";
 
 import awsFoundationsCert from "../public/images/certificates/aws-cloud-foundations.webp";
 import awsGenerativeAiCert from "../public/images/certificates/aws-generative-ai-foundations.webp";
+import awsOperationsCert from "../public/images/certificates/aws-cloud-operations.webp";
 import ciscoNetworkCert from "../public/images/certificates/network-technician-career-path.webp";
 import ciscoPythonCert from "../public/images/certificates/python-essentials-1.webp";
 import githubConceptsCert from "../public/images/certificates/github-concepts.webp";
@@ -61,6 +62,8 @@ export const featuredBadges: FeaturedBadge[] = [
     name: "Cloud Operations",
     issuer: "AWS Academy",
     note: "Operating and monitoring workloads on AWS.",
+    file: "/certificates/aws-cloud-operations.pdf",
+    certificate: awsOperationsCert,
   },
   {
     image: ciscoNetwork,
