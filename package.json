@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "certificates": "node scripts/certificate-previews.mjs"
+    "certificates": "node scripts/certificate-previews.mjs",
+    "tour-shots": "node scripts/tour-shots.mjs"
   },
   "dependencies": {
     "motion": "^12.42.2",

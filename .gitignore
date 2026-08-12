@@ -49,6 +49,11 @@ yarn-error.log*
 content/Resume*CV.pdf
 content/Resume*CV.png
 
+# private content: the raw walkthrough captures show a real customer's name and
+# bank tracking keys. Only the masked WebP that scripts/tour-shots.mjs writes
+# into public/images/ ever ships.
+content/tour-shots/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
