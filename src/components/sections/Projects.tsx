@@ -1,3 +1,4 @@
+import { alfamascotasTour } from "@content/alfamascotas";
 import { novuxTour } from "@content/novux";
 import { projects } from "@content/projects";
 import { sections } from "@content/site";
@@ -32,13 +33,26 @@ export function Projects() {
         ))}
       </RevealGroup>
 
-      {/* The cards argue; the screens prove. */}
+      {/* The cards argue; the screens prove. Both shipped systems get a pass,
+          the flagship first. */}
       <ProjectTour
         eyebrow="NOVUX TRACKER · WALKTHROUGH"
         lead="Captured from production. Each screen is here for a decision behind it, not for the pixels."
         shots={novuxTour}
         subtitle="Novux Tracker"
         link={{ href: "https://gymtrackers.app", label: "Open the live app" }}
+      />
+
+      <ProjectTour
+        eyebrow="ALFAMASCOTAS · TRANSFER VERIFIER"
+        lead="The automation running in four stores: the pipeline, what the counter staff see, and the trail it leaves. Customer data is masked."
+        shots={alfamascotasTour}
+        subtitle="AlfaMascotas · Transfer Verifier"
+        link={{
+          href: "https://github.com/Fernando-Castro-Hernandez/alfamascotas-verificacion-transferencias",
+          label: "Open the repository",
+        }}
+        className="mt-24"
       />
     </Section>
   );
